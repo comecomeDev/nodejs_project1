@@ -7,9 +7,13 @@ const router = express.Router();
 //====================
 // 1. 전체 게시글 목록 조회 API
 router.get("/", async(req,res)=>{
-   const postAll= await Posts.find({ postId :postId },{_id:1}).sort({_id:-1})
-
-   res.status(200).json({"data":postAll}); //{goods}
+  try{
+   const postAll= await Posts.find({}).sort({_id:-1}).select({postId:1,user:1,title:1,createdAt:1})
+    
+    res.status(200).json({"data":postAll}); 
+  }catch(error){
+    res.status(400).json({"message":"데이터를 찾을수 없습니다."})
+  }
 })
 
 //2. 게시글 작성 API

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = require("mongoose").Schema;
 
 const postSchema = new mongoose.Schema({
   user: {
@@ -19,6 +20,9 @@ const postSchema = new mongoose.Schema({
   createdAt:{
     type:Date,
     default :Date.now()
+  },
+  postId: {
+    type: Schema.Types.ObjectId
   }
  
   
